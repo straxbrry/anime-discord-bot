@@ -1,0 +1,35 @@
+import discord
+import os
+from keep_alive import keep_alive
+
+client = discord.Client()
+
+@client.event
+async def on_ready():
+  print('We have logged in as {0.user}'.format(client))
+ 
+@client.event
+async def on_message(message):
+  if message.author == client.user: 
+    return
+
+  if message.content.startswith('!Hello Gon'):
+    await message.channel.send('Hello!')
+
+  if message.content.startswith('!How are you Gon'):
+    await message.channel.send('Better now that you are here')
+
+  if message.content.startswith('!Are you real or fake?'):
+   await message.channel.send('. . . .')
+
+  if message.content.startswith('!Gon'):
+   await message.channel.send('Whats up!')
+
+  if message.content.startswith('!Goodnight Gon'):
+   await message.channel.send('Awww man goodnight')
+
+  if message.content.startswith('!Gon where are you):
+   await message.channel.send('I'm right here!')
+   
+keep_alive()
+client.run(os.getenv('TOKEN'))
